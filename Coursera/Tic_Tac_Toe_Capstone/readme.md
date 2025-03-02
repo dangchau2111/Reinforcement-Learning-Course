@@ -6,3 +6,6 @@ Note: This course works best for learners who are based in the North America reg
 
 ## My certificate
 ![image](https://github.com/user-attachments/assets/6d766370-af50-4a8a-adc8-98babc107bbe)
+
+## Running code:
+![image](https://github.com/user-attachments/assets/cd81dbe4-90aa-4dcb-8567-e9c3473394b9)
