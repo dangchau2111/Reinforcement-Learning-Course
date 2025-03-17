@@ -3,7 +3,7 @@ import sys
 import numpy as np
 import pickle
 
-# 🟢 Load AI Agent đã train trước
+# Load AI Agent đã train trước
 class QLearningAgent:
     def __init__(self):
         self.q_table = {}
@@ -29,12 +29,10 @@ class QLearningAgent:
             with open(filename, "rb") as f:
                 self.q_table = pickle.load(f)
         except FileNotFoundError:
-            print("⚠️ Không tìm thấy model Q-Learning! Hãy train trước.")
+            print("Không tìm thấy model!")
 
-# 🟢 Khởi tạo AI
+
 agent = QLearningAgent()
-
-# 🟢 Setup Pygame
 pygame.init()
 
 # Constants
@@ -116,10 +114,10 @@ def restart_game():
     game_over = False
 
 draw_lines()
-player = 1  # Người chơi luôn đi trước
+player = 2  # Người chơi luôn đi trước
 game_over = False
 
-# 🎮 Main loop
+# Main loop
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -127,30 +125,30 @@ while True:
             sys.exit()
 
         # 👆 Người chơi đi trước
-        if event.type == pygame.MOUSEBUTTONDOWN and not game_over and player == 1:
+        if event.type == pygame.MOUSEBUTTONDOWN and not game_over and player == 2:
             mouseX, mouseY = event.pos
             clicked_row, clicked_col = mouseY // SQUARE_SIZE, mouseX // SQUARE_SIZE
 
             if available_square(clicked_row, clicked_col):
                 mark_square(clicked_row, clicked_col, player)
                 if check_winner(player):
-                    print('🎉 Người chơi thắng!')
+                    print(' Người chơi thắng!')
                     game_over = True
-                player = 2  # Chuyển lượt sang AI
+                player = 1  # Chuyển lượt sang AI
 
-        # 🤖 Lượt của AI (Q-Learning)
-        if player == 2 and not game_over:
-            pygame.time.wait(500)  # Chờ một chút để nhìn thấy lượt của AI
+        # Lượt của AI (Q-Learning)
+        if player == 1 and not game_over:
+            pygame.time.wait(500)  
             action = agent.choose_action(board)
             if action is not None:
                 row, col = action // 3, action % 3
                 mark_square(row, col, player)
                 if check_winner(player):
-                    print(' AI thắng!')
+                    print('AI thắng!')
                     game_over = True
                 player = 1  # Trả lượt về người chơi
 
-        # 🔄 Nhấn R để restart
+        # Nhấn R để restart
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_r:
                 restart_game()
