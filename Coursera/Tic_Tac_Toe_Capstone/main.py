@@ -146,7 +146,7 @@ while True:
                 row, col = action // 3, action % 3
                 mark_square(row, col, player)
                 if check_winner(player):
-                    print('🤖 AI thắng!')
+                    print(' AI thắng!')
                     game_over = True
                 player = 1  # Trả lượt về người chơi
 
@@ -154,6 +154,6 @@ while True:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_r:
                 restart_game()
-
+        
     draw_figures()
     pygame.display.update()
