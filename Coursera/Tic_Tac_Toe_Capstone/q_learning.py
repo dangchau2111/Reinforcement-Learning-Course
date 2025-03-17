@@ -3,7 +3,7 @@ import pickle
 from tic_tac_toe_env import TicTacToeEnv
 
 class QLearningAgent:
-    def __init__(self, alpha=0.1, gamma=0.9, epsilon=0.9, epsilon_decay=0.995):
+    def __init__(self, alpha=0.1, gamma=0.9, epsilon=0.9, epsilon_decay=0.000001):
         self.q_table = {}  # Q-table dạng dictionary
         self.alpha = alpha  # Learning rate
         self.gamma = gamma  # Discount factor
@@ -25,7 +25,7 @@ class QLearningAgent:
             return np.random.choice(available_actions)  # Chọn ngẫu nhiên
 
         q_values = self.get_q_values(state)
-        return max(available_actions, key=lambda x: q_values[x])  # Chọn action tốt nhất
+        return max(available_actions, key=lambda x: q_values[x])  # Chọn vị trí trống có Q Values lớn nhất
 
     def update(self, state, action, reward, next_state):
         """Cập nhật giá trị Q"""
@@ -33,7 +33,6 @@ class QLearningAgent:
         next_q_values = self.get_q_values(next_state)
 
         q_values[action] += self.alpha * (reward + self.gamma * np.max(next_q_values) - q_values[action])
-        # self.epsilon *= self.epsilon_decay
 
     def save_model(self, filename="q_table.pkl"):
         """Lưu Q-table"""
@@ -54,7 +53,7 @@ class QLearningAgent:
                 f.write("-" * 50 + "\n")
         print(f"Q-table đã được lưu vào {filename}")
 
-    def train_agent(self, episodes=100000000):
+    def train_agent(self, episodes=1000000):
         """Train bot với người chơi random"""
         env = TicTacToeEnv()
 
@@ -77,6 +76,7 @@ class QLearningAgent:
                 next_state, reward, done = env.step(action, 1)  # Bot chơi X
                 self.update(state, action, reward, next_state)
                 state = next_state
+            self.epsilon -= self.epsilon_decay
 
         self.save_model()
         self.save_q_table_txt()
