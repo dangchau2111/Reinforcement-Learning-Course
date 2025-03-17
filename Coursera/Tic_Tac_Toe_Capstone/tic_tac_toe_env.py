@@ -15,7 +15,7 @@ class TicTacToeEnv:
 
     def get_state(self):
         """Chuyển bảng thành dạng tuple để dễ dùng với Q-table"""
-        return tuple(self.state.flatten())
+        return tuple(self.state.flatten()) # Vector 1 chiều 9 tham số
 
     def check_winner(self):
         """Kiểm tra ai thắng"""
@@ -39,16 +39,17 @@ class TicTacToeEnv:
         if self.state[action // 3, action % 3] != 0 or self.done:
             return self.get_state(), -10, True  # Hành động không hợp lệ
 
-        self.state[action // 3, action % 3] = player
+        self.state[action // 3, action % 3] = player  # Giữ nguyên giá trị 1 hoặc 2
         winner = self.check_winner()
 
         if winner:
             self.done = True
             self.winner = winner
-            return self.get_state(), 1 if winner == player else -1, True
+            return self.get_state(), 5 if winner == 1 else -5, True
 
         if not (self.state == 0).any():  # Hòa
             self.done = True
             return self.get_state(), 0, True
 
         return self.get_state(), 0, False
+
