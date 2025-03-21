@@ -51,3 +51,9 @@ Trong repo này của tôi:
     * Visualize kết quả cắt của model trên 1 tập data.
   ![image](https://github.com/user-attachments/assets/24b067f2-4720-4094-9b0c-75d4fcf72e9d)
 
+
+Nguồn tham khảo:
+https://medium.com/%40oleglatypov/a-comprehensive-guide-to-proximal-policy-optimization-ppo-in-ai-82edab5db200
+https://arxiv.org/pdf/1707.06347
+https://www.youtube.com/watch?v=hlv79rcHws0
+
