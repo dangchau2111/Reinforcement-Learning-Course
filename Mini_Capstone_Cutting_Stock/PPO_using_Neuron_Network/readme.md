@@ -50,7 +50,7 @@ Trong repo này của tôi:
   - File test.py:
     * Visualize kết quả cắt của model trên 1 tập data.
   ![image](https://github.com/user-attachments/assets/24b067f2-4720-4094-9b0c-75d4fcf72e9d)
-
+Vì sự thiếu hụt về phần cứng, hiệu suất mô hình chưa được tối ưu, có thể phát triển thêm!
 
 Nguồn tham khảo: \
 https://medium.com/%40oleglatypov/a-comprehensive-guide-to-proximal-policy-optimization-ppo-in-ai-82edab5db200   \
